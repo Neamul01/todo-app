@@ -1,9 +1,11 @@
 <template>
   <div class="todo">
     <h1>Todo's</h1>
-    <input type="text" name="todo" id="todo" class="todo" />
-    <button class="button">Add</button>
-    <div>
+    <div class="addTodo">
+      <input type="text" name="todo" id="todo" class="todo" />
+      <button class="button">Add</button>
+    </div>
+    <div class="todoList">
       <ToDos />
     </div>
   </div>
@@ -22,8 +24,22 @@ export default {
 <style>
 .todo {
   padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 .button {
   padding: 0.5rem;
+  width: 100%;
+}
+.addTodo {
+  margin-bottom: 0.5rem;
+}
+.todoList {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 22rem;
+  text-align: left;
 }
 </style>
