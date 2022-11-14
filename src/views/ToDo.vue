@@ -2,8 +2,8 @@
   <div class="todo">
     <h1>Todo's</h1>
     <div class="addTodo">
-      <input type="text" name="todo" id="todo" class="todo" />
-      <button class="button">Add</button>
+      <input type="text" name="todo" id="todo" class="todo" v-model="value" />
+      <button class="button" @click="addTodo">Add</button>
     </div>
     <div class="todoList">
       <ToDos />
@@ -13,10 +13,31 @@
 
 <script lang="ts">
 import ToDos from "@/components/ToDos.vue";
+import axios from "axios";
+
 export default {
   name: "App",
   components: {
     ToDos,
+  },
+  data() {
+    return {
+      value: "",
+    };
+  },
+  methods: {
+    addTodo() {
+      axios
+        .post("https://jsonplaceholder.typicode.com/todos")
+        .then((res) => {
+          console.log(res);
+          if (res.status === 201) {
+            alert("Todo added successfully");
+          }
+        })
+        .catch((err) => console.log(err));
+      this.value = "";
+    },
   },
 };
 </script>

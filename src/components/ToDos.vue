@@ -2,7 +2,7 @@
   <div @click="getTodos" class="todoHead">todo's</div>
   <ul class="single-todo" v-for="todo in todoLists" :key="todo.id">
     <li>{{ todo.title }}</li>
-    <button>Edit</button>
+    <button @click="editTodo(todo.id)">Edit</button>
     <button @click="deleteTodo(todo.id)">Delete</button>
   </ul>
 </template>
@@ -18,22 +18,30 @@ export default {
     };
   },
   methods: {
+    // get all the todo
     getTodos() {
       axios
         .get("https://jsonplaceholder.typicode.com/todos")
         .then((res) => {
-          this.todoLists = res.data.slice(0, 10);
+          this.todoLists = res.data.slice(
+            res.data.length - 10,
+            res.data.length
+          );
         })
         .catch((err) => console.log(err));
     },
+
+    // update or edit a todo
     editTodo(id) {
       axios
-        .patch(`https://jsonplaceholder.typicode.com/posts/${e}`)
+        .patch(`https://jsonplaceholder.typicode.com/posts/${id}`)
         .then((res) => {
           console.log(res);
         })
         .catch((err) => console.log(err));
     },
+
+    // delete a to do
     deleteTodo(id) {
       axios
         .delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
