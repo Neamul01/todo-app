@@ -51,7 +51,6 @@ export default {
           title: todo.title,
         },
       };
-      // console.log(todo);
       this.showModal = true;
     },
 
@@ -60,9 +59,7 @@ export default {
       axios
         .delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
         .then((res) => {
-          // console.log(res);
           if (res.status) {
-            // alert("post deleted successfully" + " " + id);
             this.modalData = {
               title: "Todo Deleted Successfully",
               description: `Your todo deleted successfully`,

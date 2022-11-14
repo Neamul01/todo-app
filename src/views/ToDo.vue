@@ -44,7 +44,6 @@ export default {
         .then((res) => {
           console.log(res);
           if (res.status === 201) {
-            // alert("Todo added successfully");
             this.showModal = true;
           }
         })
