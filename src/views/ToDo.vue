@@ -14,7 +14,7 @@
 <script lang="ts">
 import ToDos from "@/components/ToDos.vue";
 export default {
-  // name:'App',
+  name: "App",
   components: {
     ToDos,
   },
@@ -30,16 +30,16 @@ export default {
 }
 .button {
   padding: 0.5rem;
-  width: 100%;
 }
 .addTodo {
   margin-bottom: 0.5rem;
+  display: flex;
+  gap: 0.1rem;
 }
 .todoList {
   display: flex;
   flex-direction: column;
-  align-items: left;
-  width: 22rem;
+  width: 45rem;
   text-align: left;
 }
 </style>
