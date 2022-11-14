@@ -8,21 +8,33 @@
     <div class="todoList">
       <ToDos />
     </div>
+    <PopUpModal
+      v-show="showModal"
+      @close-modal="showModal = false"
+      :modalData="modalData"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import ToDos from "@/components/ToDos.vue";
 import axios from "axios";
+import PopUpModal from "../components/PopUpModal.vue";
 
 export default {
   name: "App",
   components: {
     ToDos,
+    PopUpModal,
   },
   data() {
     return {
       value: "",
+      showModal: false,
+      modalData: {
+        title: "Saved Succcessfully",
+        description: "Your Todo saved successfully",
+      },
     };
   },
   methods: {
@@ -32,7 +44,8 @@ export default {
         .then((res) => {
           console.log(res);
           if (res.status === 201) {
-            alert("Todo added successfully");
+            // alert("Todo added successfully");
+            this.showModal = true;
           }
         })
         .catch((err) => console.log(err));

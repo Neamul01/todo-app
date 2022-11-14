@@ -2,19 +2,30 @@
   <div @click="getTodos" class="todoHead">todo's</div>
   <ul class="single-todo" v-for="todo in todoLists" :key="todo.id">
     <li>{{ todo.title }}</li>
-    <button @click="editTodo(todo.id)">Edit</button>
+    <button @click="editTodo(todo)">Edit</button>
     <button @click="deleteTodo(todo.id)">Delete</button>
   </ul>
+  <PopUpModal
+    v-show="showModal"
+    @close-modal="showModal = false"
+    :modalData="modalData"
+  />
 </template>
 
 <script>
 import axios from "axios";
+import PopUpModal from "../components/PopUpModal";
 
 export default {
   name: "ToDos",
+  components: {
+    PopUpModal,
+  },
   data() {
     return {
       todoLists: [],
+      showModal: false,
+      modalData: {},
     };
   },
   methods: {
@@ -32,13 +43,16 @@ export default {
     },
 
     // update or edit a todo
-    editTodo(id) {
-      axios
-        .patch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => console.log(err));
+    editTodo(todo) {
+      this.modalData = {
+        updateModal: true,
+        todo: {
+          id: todo.id,
+          title: todo.title,
+        },
+      };
+      // console.log(todo);
+      this.showModal = true;
     },
 
     // delete a to do
@@ -46,9 +60,14 @@ export default {
       axios
         .delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           if (res.status) {
-            alert("post deleted successfully" + " " + id);
+            // alert("post deleted successfully" + " " + id);
+            this.modalData = {
+              title: "Todo Deleted Successfully",
+              description: `Your todo deleted successfully`,
+            };
+            this.showModal = true;
           }
         })
         .catch((err) => console.log(err));
