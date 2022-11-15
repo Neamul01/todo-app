@@ -1,9 +1,9 @@
 # todo-app
 
 ## Live Link
-```
+
 [Todo app](https://todo-app-with-vue3.netlify.app/).
-```
+
 
 ### Compiles and hot-reloads for development
 ```
