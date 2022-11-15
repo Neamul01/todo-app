@@ -1,8 +1,8 @@
 # todo-app
 
-## Project setup
+## Live Link
 ```
-yarn install
+[Todo app](https://todo-app-with-vue3.netlify.app/).
 ```
 
 ### Compiles and hot-reloads for development
@@ -21,4 +21,4 @@ yarn lint
 ```
 
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
